@@ -7,6 +7,8 @@ import string
 from iota import *
 from database import Database
 import logging
+#log init
+logging.basicConfig(filename='log/iota_tip_bot.log', format='%(levelname)s: %(asctime)s: %(message)s ',level=logging.INFO)
 import config
 from api_twitch import Api_twitch
 from api_iota import Api_iota
@@ -25,8 +27,6 @@ twitch_api.join_channel(config.twitch_CHAN)
 #iota api init
 iota_api = Api_iota(config.seed, config.node_address)
 
-#log init
-logging.basicConfig(filename='log/iota_tip_bot.log', format='%(levelname)s: %(asctime)s: %(message)s ', level=logging.INFO)
 
 #join all registred channel
 with bot_db_lock:
@@ -171,7 +171,10 @@ withdrawThread.start()
 def periodic_info():
     print("Periodic Check thread started")
     while True:
-        for channel in bot_db.get_channels():
+        with bot_db_lock:
+            channels = bot_db.get_channels()
+        for channel in channels:
+            logging.info('Proba')
             twitch_api.send_message(channel[1], "Tip any user with IOTA! Type !help for more info and list of commands! For better experience with whisper messages follow me.")
             time.sleep(10)
 

@@ -2,12 +2,11 @@ import config
 import socket
 import re
 import time
-import logging
 from bot_types import IRCMessage
 import helper
 
 class Api_twitch:
-    logging.basicConfig(filename='log/api_twitch.log',format='%(levelname)s: %(asctime)s: %(message)s ',level=logging.INFO)
+    #logging.basicConfig(filename='log/api_twitch.log',format='%(levelname)s: %(asctime)s: %(message)s ',level=logging.INFO)
 
     def __init__(self, host, port):
         """
