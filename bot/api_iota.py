@@ -9,11 +9,10 @@ import json
 import math
 import time
 import requests
-import logging
 
 class Api_iota:
 
-    logging.basicConfig(filename='api_iota.log',format='%(levelname)s: %(asctime)s: %(message)s ',level=logging.INFO)
+    #logging.basicConfig(filename='api_iota.log',format='%(levelname)s: %(asctime)s: %(message)s ',level=logging.INFO)
 
     def __init__(self, seed, node_address):
         """     
